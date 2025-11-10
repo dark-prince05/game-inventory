@@ -1,0 +1,26 @@
+{
+  "description": "",
+  "main": "app.js",
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.1.17",
+    "tailwindcss": "^4.1.17"
+  },
+  "scripts": {
+    "start": "npx nodemon app.js",
+    "populate": "node db/populateDb.js",
+    "dev:css": "npx @tailwindcss/cli -i ./src/tailwind.css -o ./public/style.css --watch",
+    "build:css": "npx @tailwindcss/cli -i ./src/tailwind.css -o ./public/style.css --minify"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "dotenv": "^17.2.3",
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "express-validator": "^7.3.0",
+    "nodemon": "^3.1.10",
+    "pg": "^8.16.3"
+  }
+}
