@@ -1,0 +1,69 @@
+<div class="w-[70%] mx-auto">
+<form action="/<%= isEdit ? 'edit-game' : 'add-game' %>" method="post" enctype="multipart/form-data">
+    <input type="hidden" name="id" value="<%= games[0].id %>">
+    <lable for="name" class="font-bold">Name:</lable><br />
+    <input
+      type="text"
+      name="name"
+      placeholder="Enter game name"
+      class="border-2 w-full rounded px-2 py-1 my-1 text-sm"
+      <% if(isEdit) {%>
+      value="<%= games[0].name %>"
+      <% } %>
+      required
+    /><br />
+    <lable for="category" class="font-bold">Categories:</lable><br />
+    <input
+      type="text"
+      name="category"
+      placeholder="Enter game Categories (seperated by comma)"
+      class="border-2 w-full rounded px-2 py-1 my-1 text-sm"
+      <% if(isEdit) {%>
+      value="<%= games[0].category %>"
+      <% } %>
+      required
+    /><br />
+    <lable for="price" class="font-bold">Price:</lable><br />
+    <input
+      type="tel"
+      name="price"
+      placeholder="Enter game price"
+      class="border-2 w-full rounded px-2 py-1 my-1 text-sm"
+      <% if(isEdit) {%>
+      value="<%= games[0].price %>"
+      <% } %>
+      required
+    /><br />
+    <lable for="stock" class="font-bold">Stock:</lable><br />
+    <input
+      type="number"
+      name="stock"
+      placeholder="Enter stocks"
+      class="border-2 w-full rounded px-2 py-1 my-1 text-sm"
+      <% if(isEdit) {%>
+      value="<%= games[0].stock%>"
+      <% } %>
+      required
+    /><br />
+    <lable for="image" class="font-bold">Select an image</lable><br />
+    <input
+      type="file"
+      name="image"
+      class="border-2 w-full rounded px-2 py-1 my-1 text-sm"
+      accept="image/*"
+    /><br />
+    <div class="flex gap-3 mt-4 justify-end">
+      <a
+        href="/"
+        class="bg-blue-700 px-2 py-1 rounded flex items-center justify-center font-bold text-lg"
+        >Back</a
+      >
+      <button
+        class="bg-blue-700 px-2 py-1 rounded flex items-center justify-center font-bold text-lg"
+        type="submit"
+      >
+        Submit
+      </button>
+    </div>
+  </form>
+</div>

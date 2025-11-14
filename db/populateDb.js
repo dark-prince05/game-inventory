@@ -7,14 +7,15 @@ CREATE TABLE IF NOT EXISTS game_inventory(
   name VARCHAR(255),
   category VARCHAR(50),
   price INTEGER,
-  stock INTEGER
+  stock INTEGER,
+  filepath TEXT
 );
 
-INSERT INTO game_inventory (name, category, price, stock) 
+INSERT INTO game_inventory (name, category, price, stock, filepath) 
 VALUES 
-  ('God of War', 'action adventure open-world', 3000, 2),
-  ('GTA 5', 'adventure open-world shooting', 2500, 4),
-  ('Elden Ring', 'adventure role-playing', 2800, 3);
+  ('God of War', 'action adventure open-world', 3000, 2, 'hi'),
+  ('GTA 5', 'adventure open-world shooting', 2500, 4, 'bye'),
+  ('Elden Ring', 'adventure role-playing', 2800, 3, 'good');
 `;
 
 const main = async () => {
