@@ -8,8 +8,10 @@
     "tailwindcss": "^4.1.17"
   },
   "scripts": {
-    "start": "npx nodemon app.js",
+    "start": "node app.js",
+    "dev": "npx nodemon app.js",
     "populate": "node db/populateDb.js",
+    "build": "npm run build:css && npm install",
     "dev:css": "npx @tailwindcss/cli -i ./src/tailwind.css -o ./public/style.css --watch",
     "build:css": "npx @tailwindcss/cli -i ./src/tailwind.css -o ./public/style.css --minify"
   },
