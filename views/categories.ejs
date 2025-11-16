@@ -1,0 +1,19 @@
+<h2 class="text-start font-bold text-xl">Categories</h2>
+<div>
+  <% let categories = [];
+  games.forEach(game => {
+  const types = game.category.split(" ");
+  categories.push(...types) });
+  categories = [...new Set(categories)];
+  %>
+  <div class="flex my-4">
+    <% categories.forEach(cate => { %>
+    <a
+      href="games/<%= cate%>"
+      class="rounded-full text-sm px-2 py-1 bg-slate-700 m-1 text-white transform transition-transform duration-200 hover:-translate-y-1"
+    >
+      <%= cate[0].toUpperCase() + cate.slice(1) %>
+    </a>
+    <% }) %>
+  </div>
+</div>

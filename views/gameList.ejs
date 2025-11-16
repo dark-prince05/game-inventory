@@ -1,0 +1,119 @@
+<div class="flex items-center justify-between mb-3">
+  <h2 class="text-start font-bold text-xl"><%= heading %></h2>
+  <div class="flex gap-2">
+    <a
+      href="/"
+      class="bg-blue-600 px-2 rounded flex items-center justify-center font-bold hover:bg-blue-900 transition-colors"
+    >
+      Back
+    </a>
+    <a
+      href="/add-game"
+      class="bg-blue-600 px-2 rounded flex items-center justify-center font-bold hover:bg-blue-900 transition-colors"
+    >
+      Add
+    </a>
+  </div>
+</div>
+<div class="overflow-scroll h-[590px]">
+  <% for (let i = 0; i < games.length; i++) { %>
+  <div
+    id="<%= games[i].id %>"
+    class="grid grid-cols-4 gap-2 grid-cols-[1fr_2fr_1fr_1fr] p-4 mb-4 rounded-lg items-center justify-items-center bg-slate-950 relative"
+  >
+    <img
+      src="<%= games[i].filepath %>"
+      alt=""
+      class="w-[200px] min-h-[180px] object-contain"
+    />
+    <div class="justify-self-start">
+      <div class="m-1"><%= games[i].name %></div>
+      <div class="flex flex-wrap">
+        <% games[i].category.split(" ").forEach(cate => { %>
+        <div
+          class="rounded-full text-sm px-2 py-1 bg-[#7FFFD430] border-2 m-1 border-[#7CFC00]"
+        >
+          <%= cate[0].toUpperCase() + cate.slice(1) %>
+        </div>
+        <% }) %>
+      </div>
+    </div>
+    <div>₹<%= games[i].price %></div>
+    <div>
+      <div>
+        Stock:
+        <%= games[i].stock %>
+      </div>
+      <div class="text-xs absolute flex gap-1 bottom-2 right-3">
+        <a
+          href="/edit-game?id=<%= games[i].id %>"
+          class="bg-blue-600 hover:bg-blue-900 transition-colors px-2 py-1 rounded fa-solid fa-pen"
+        ></a>
+        <button
+          id="<%= games[i].id %>"
+          class="bg-red-600 hover:bg-red-900 transition-colors px-2 py-1 rounded fa-solid fa-trash delete-btn"
+        ></button>
+      </div>
+    </div>
+  </div>
+  <% } %>
+</div>
+<dialog
+  id="delete-modal"
+  class="m-auto w-md h-40 rounded p-4 bg-slate-900 text-white"
+>
+  <div class="flex justify-center items-center">
+    <form action="/delete-game" method="post" id="delete-form">
+      <div>Enter admin password to confirm deletion</div>
+      <input type="hidden" name='id' id="form-id">
+      <input
+        type="password"
+        id="password"
+        class="border-2 w-full rounded px-2 py-1 text-sm my-5 focus:outline-none"
+      />
+      <div class="flex gap-2 justify-end">
+        <button
+          type="button"
+          class="bg-red-600 hover:bg-red-900 transition-colors px-2 py-1 rounded font-bold cancel-btn"
+        >
+          Cancel
+        </button>
+        <input
+          type="submit"
+          value="Delete"
+          class="bg-blue-600 hover:bg-blue-900 transition-colors px-2 py-1 rounded font-bold"
+        />
+      </div>
+    </form>
+  </div>
+</dialog>
+
+<script>
+  const dialog = document.querySelector('dialog');
+  const password = document.querySelector('#password');
+  const form = document.querySelector('#delete-form');
+  const deleteBtns = document.querySelectorAll('.delete-btn');
+  const cancelBtns = document.querySelectorAll('.cancel-btn');
+  const hiddenInput = document.querySelector('#form-id')
+
+  deleteBtns.forEach((deleteBtn) => {
+    deleteBtn.addEventListener('click', () => {
+      hiddenInput.value = `${deleteBtn.id}`
+      dialog.showModal();
+    });
+  });
+
+  cancelBtns.forEach((cancelBtn) => {
+    cancelBtn.addEventListener('click', () => {
+      dialog.close();
+    });
+  });
+
+  const adminPassword = "<%= adminPassword %>"
+  form.addEventListener('submit', (e) => {
+    if(password.value.trim() !== adminPassword ){
+      e.preventDefault()
+      alert('Wrong Password, access denied!')
+    }
+  })
+</script>
