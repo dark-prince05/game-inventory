@@ -261,11 +261,17 @@
   .w-\[200px\] {
     width: 200px;
   }
+  .w-\[800px\] {
+    width: 800px;
+  }
   .w-full {
     width: 100%;
   }
   .w-md {
     width: var(--container-md);
+  }
+  .w-xl {
+    width: var(--container-xl);
   }
   .border-collapse {
     border-collapse: collapse;
