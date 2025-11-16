@@ -12,8 +12,8 @@
     "dev": "npx nodemon app.js",
     "populate": "node db/populateDb.js",
     "build": "npm run build:css && npm install",
-    "dev:css": "npx @tailwindcss/cli -i ./src/tailwind.css -o ./public/style.css --watch",
-    "build:css": "npx @tailwindcss/cli -i ./src/tailwind.css -o ./public/style.css --minify"
+    "dev:css": "npx @tailwindcss/cli -i src/tailwind.css -o public/style.css --watch",
+    "build:css": "npx @tailwindcss/cli -i src/tailwind.css -o public/style.css --minify"
   },
   "keywords": [],
   "author": "",
